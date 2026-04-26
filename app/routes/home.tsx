@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
 import Navbar from "../../components/Navbar";
-import { ArrowRight, Layers } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Clock, Layers } from "lucide-react";
 import Button from "../../components/ui/Button";
 
 export function meta({ }: Route.MetaArgs) {
@@ -14,6 +14,7 @@ export function meta({ }: Route.MetaArgs) {
 export default function Home() {
   return (<>
     <Navbar />
+    {/* hero */}
     <section className="hero">
       <div className="announce">
         <div className="dot">
@@ -52,5 +53,43 @@ export default function Home() {
         <p>Upload images</p>
       </div>
     </section>
+    {/*  projects*/}
+
+    <section className="projects">
+      <div className="section-inner">
+        <div className="section-head">
+          <div className="copy">
+            <h2>Projects</h2>
+            <p>Your latest work and shared commmunity projects, all in on place.</p>
+          </div>
+        </div>
+        {/*  */}
+        <div className="projects-grid">
+          <div className="project-card group">
+            <div className="preview">
+              <img src="#" alt="Project" />
+              <div className="badge"><span>Community</span></div>
+            </div>
+            {/*  */}
+            <div className="card-body">
+              <div className="">
+                <h3>Project Manhattan</h3>
+                <div className="meta">
+                  <Clock size={12} />
+                  <span>{new Date('01.01.2027').toLocaleDateString()}</span>
+                  <span> By Azula</span>
+                </div>
+              </div>
+
+              <div className="arrow">
+                <ArrowUpRight size={18} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </>)
 }
