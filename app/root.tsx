@@ -88,6 +88,7 @@ export default function App() {
 
   // rendering stuffs
   return <main className="min-h-screen bg-background text-foreground relative z-10">
+    {/*  “<Outlet /> renders the child route at that spot, and context lets us pass data to those child routes.” */}
     <Outlet context={{
       ...authState, refreshAuth, signIn, signOut
     }} />
