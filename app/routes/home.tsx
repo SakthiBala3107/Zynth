@@ -5,8 +5,8 @@ import { ArrowRight, ArrowUpRight, Clock, Layers } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Upload from "../../components/Upload";
 import { useNavigate } from "react-router";
-import { createProject } from "../../lib/puter.action";
-import { useState } from "react";
+import { createProject, getProjects } from "../../lib/puter.action";
+import { useEffect, useState } from "react";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -41,6 +41,16 @@ export default function Home() {
     })
     return true;
   }
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const items = await getProjects()
+
+      setProjects(items ?? [])
+    }
+    fetchProjects()
+
+  }, [])
 
   // rendering stuffs
   return (<>
@@ -97,7 +107,7 @@ export default function Home() {
         {/*  */}
         <div className="projects-grid">
           {projects?.map(({ id, name, renderedImage, sourceImage, timestamp }) => (
-            <div key={id} className="project-card group">
+            <div key={id} className="project-card group" onClick={() => navigate(`/visualizer/${id}`)}>
               <div className="preview">
                 <img src={renderedImage || sourceImage} alt="Project" />
                 <div className="badge"><span>Community</span></div>
